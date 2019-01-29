@@ -54,18 +54,33 @@ namespace RockPaperScissors
             }
         }
 
-        void VictoryCheck()
+        bool VictoryCheck()
         {            
             foreach (var participant in Participants)
             {
                 if(!participant.Key.HasPlayed())
-                    return;
+                    return false;
             }
 
-            if (NumPlayers == 2)
+            if (NumPlayers != 2)
+                return false;
+
+            List<Selection> InPlay = new List<Selection>();
+            foreach (var participant in Participants)
             {
+                InPlay.Add(participant.Key.InPlaySelection);
+            }                        
 
+            foreach (var condition in WinConditions)
+            {
+                if (condition == new VictoryCondition(InPlay[0], InPlay[1]))
+                    if (Participants.First().Key.IncreaseScore(1) == WinningScore)
+                        return true;
             }
+
+            if (Participants.Last().Key.IncreaseScore(1) == WinningScore)            
+                return true;
+            return false;
         }
     }
 }

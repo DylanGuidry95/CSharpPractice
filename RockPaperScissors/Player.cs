@@ -8,7 +8,7 @@ namespace RockPaperScissors
 {
     class Player : IActor
     {
-        private Selection InPlaySelection;
+        public Selection InPlaySelection;
         private string Name;
         private int Score;
 
