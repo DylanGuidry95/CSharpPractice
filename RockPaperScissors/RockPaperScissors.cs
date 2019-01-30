@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissors
 {
-    class RockPaperScissors
+    public class RockPaperScissors
     {
         private Dictionary<Player, bool> Participants;
         private int WinningScore;
@@ -20,16 +20,19 @@ namespace RockPaperScissors
             Participants.Add(new Player(), false);
             NumPlayers = 2;
             WinningScore = 1;
+            WinConditions = new List<VictoryCondition>();
             VictoryCondition rock = new VictoryCondition(Selection.ROCK, Selection.SCISSORS);
             VictoryCondition paper = new VictoryCondition(Selection.PAPER, Selection.ROCK);
             VictoryCondition scissors = new VictoryCondition(Selection.SCISSORS, Selection.PAPER);
             WinConditions.Add(rock);
             WinConditions.Add(paper);
             WinConditions.Add(scissors);
+            StartRound();
         }
 
         public RockPaperScissors(List<Player> players, int winScore)
         {
+            Participants = new Dictionary<Player, bool>();
             NumPlayers = players.Count * 2;
             foreach (var player in players)
             {
@@ -39,6 +42,14 @@ namespace RockPaperScissors
 
             NumPlayers = Participants.Count;
             WinningScore = winScore;
+            WinConditions = new List<VictoryCondition>();
+            VictoryCondition rock = new VictoryCondition(Selection.ROCK, Selection.SCISSORS);
+            VictoryCondition paper = new VictoryCondition(Selection.PAPER, Selection.ROCK);
+            VictoryCondition scissors = new VictoryCondition(Selection.SCISSORS, Selection.PAPER);
+            WinConditions.Add(rock);
+            WinConditions.Add(paper);
+            WinConditions.Add(scissors);
+            StartRound();
         }
 
         void StartRound()
@@ -48,13 +59,14 @@ namespace RockPaperScissors
                 if (!participant.Value)
                 {
                     var rand = new Random();
-                    int selection = rand.Next(0, 4);
+                    int selection = rand.Next(0, 3);
+                    Selection a = (Selection) selection;
                     participant.Key.SelectPlay((Selection)selection);
                 }
             }
         }
 
-        bool VictoryCheck()
+        public bool VictoryCheck()
         {            
             foreach (var participant in Participants)
             {
@@ -80,7 +92,19 @@ namespace RockPaperScissors
 
             if (Participants.Last().Key.IncreaseScore(1) == WinningScore)            
                 return true;
+            
+            StartRound();
             return false;
+        }
+
+        public void SetPlayerName(string name)
+        {
+            Participants.First().Key.SetName(name);
+        }
+
+        public Player GetPlayer()
+        {
+            return Participants.First().Key;
         }
     }
 }

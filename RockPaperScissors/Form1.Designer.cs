@@ -33,8 +33,7 @@
             this.Rock = new System.Windows.Forms.Button();
             this.Paper = new System.Windows.Forms.Button();
             this.Scissors = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.ScoreBox = new System.Windows.Forms.RichTextBox();
+            this.Log = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +55,7 @@
             this.PlayerName.Name = "PlayerName";
             this.PlayerName.Size = new System.Drawing.Size(297, 20);
             this.PlayerName.TabIndex = 0;
+            this.PlayerName.TextChanged += new System.EventHandler(this.PlayerName_TextChanged);
             // 
             // Rock
             // 
@@ -65,6 +65,7 @@
             this.Rock.TabIndex = 1;
             this.Rock.Text = "Rock";
             this.Rock.UseVisualStyleBackColor = true;
+            this.Rock.Click += new System.EventHandler(this.Rock_Click);
             // 
             // Paper
             // 
@@ -74,6 +75,7 @@
             this.Paper.TabIndex = 2;
             this.Paper.Text = "Paper";
             this.Paper.UseVisualStyleBackColor = true;
+            this.Paper.Click += new System.EventHandler(this.Paper_Click);
             // 
             // Scissors
             // 
@@ -83,30 +85,22 @@
             this.Scissors.TabIndex = 3;
             this.Scissors.Text = "Scissors";
             this.Scissors.UseVisualStyleBackColor = true;
+            this.Scissors.Click += new System.EventHandler(this.Scissors_Click);
             // 
-            // richTextBox1
+            // Log
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(330, 82);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(458, 70);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
-            // 
-            // ScoreBox
-            // 
-            this.ScoreBox.Location = new System.Drawing.Point(507, 13);
-            this.ScoreBox.Name = "ScoreBox";
-            this.ScoreBox.Size = new System.Drawing.Size(100, 40);
-            this.ScoreBox.TabIndex = 2;
-            this.ScoreBox.Text = "";
+            this.Log.Location = new System.Drawing.Point(330, 82);
+            this.Log.Name = "Log";
+            this.Log.Size = new System.Drawing.Size(458, 70);
+            this.Log.TabIndex = 1;
+            this.Log.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 164);
-            this.Controls.Add(this.ScoreBox);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.Log);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -123,8 +117,7 @@
         private System.Windows.Forms.Button Paper;
         private System.Windows.Forms.Button Rock;
         private System.Windows.Forms.TextBox PlayerName;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox ScoreBox;
+        private System.Windows.Forms.RichTextBox Log;
     }
 }
 

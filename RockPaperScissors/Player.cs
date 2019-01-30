@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissors
 {
-    class Player : IActor
+    public class Player : IActor
     {
         public Selection InPlaySelection;
         private string Name;
@@ -27,8 +27,7 @@ namespace RockPaperScissors
         }
 
         public void SelectPlay(Selection selection)
-        {
-            if (InPlaySelection == Selection.NONE)
+        {         
                 InPlaySelection = selection;
         }
 
@@ -40,6 +39,11 @@ namespace RockPaperScissors
         public int IncreaseScore(int amount)
         {
             return Score += amount;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
         }
     }
 }
