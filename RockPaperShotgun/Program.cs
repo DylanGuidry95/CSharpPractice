@@ -10,6 +10,7 @@ namespace RockPaperShotgun
     {
         static void Main(string[] args)
         {
+            //create a new instance of RPS. Play game.
             RPS game = new RPS();
             game.PlayGame();
         }
