@@ -16,7 +16,7 @@ namespace RockPaperScissors
         {
             List<Player> players = new List<Player>( );
             players.Add(new Player());
-            RockPaperScissors game = new RockPaperScissors(players,50);
+            RockPaperScissors game = new RockPaperScissors(players,3);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(game));

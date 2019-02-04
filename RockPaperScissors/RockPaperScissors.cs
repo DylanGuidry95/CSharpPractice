@@ -106,5 +106,16 @@ namespace RockPaperScissors
         {
             return Participants.First().Key;
         }
+
+        public List<Selection> GetPlayed()
+        {
+            List<Selection> InPlay = new List<Selection>();
+            foreach (var participant in Participants)
+            {
+                InPlay.Add(participant.Key.InPlaySelection);
+            }
+
+            return InPlay;
+        }
     }
 }
