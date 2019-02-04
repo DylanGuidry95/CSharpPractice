@@ -6,7 +6,7 @@ namespace CSharpPractice
 {
     struct Node<T>
     {
-        public T Value;
+        public T Value;        
         public bool IsVictor;
     }
 
@@ -31,10 +31,24 @@ namespace CSharpPractice
         {
             return ContestantLeft.IsVictor ? ContestantLeft.Value : ContestantRight.Value;
         }
-
     }
 
-    class TournamentTree
+    class TournamentTree<T>
     {
+        public int NumberContestants;
+        public List<Match<T>> Matches;
+
+        TournamentTree(int numContestants)
+        {
+            NumberContestants = numContestants;
+            for (int i = 0; i < numContestants / 2; i++)
+            {
+                Matches.Add(new Match<T>());
+                if (i % 2 == 0)
+                {
+                    
+                }
+            }
+        }
     }
 }
