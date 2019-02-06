@@ -47,31 +47,51 @@ namespace CSharpPractice
                 { 1000, "M" }
             };
 
-            int UserValue = 100;
+            Dictionary<string, int> RomanToDec = new Dictionary<string, int>();
+
+            foreach (var kvp in DecToRoman)
+            {
+                RomanToDec.Add(kvp.Value, kvp.Key);
+            }
+
+            int UserValue = 4999;
             string RomanValue = "";
 
             int curValue = UserValue;
             while (curValue > 0)
             {
                 KeyValuePair<int, string> lastLowest;
-                if (DecToRoman.ContainsKey(curValue))
-                {
-                    lastLowest = 
-                        new KeyValuePair<int, string>(curValue,DecToRoman[curValue]);
-                    curValue = curValue - lastLowest.Key;
-                    RomanValue += lastLowest.Value;
-                    break;                    
-                }
 
-                foreach (var kvp in DecToRoman)
-                {
-                    if(kvp.Key > curValue)
-                        break;
-                    lastLowest = kvp;
-                }
+
+                if(!DecToRoman.ContainsKey(curValue))
+                    foreach (var kvp in DecToRoman)
+                    {
+                        if (kvp.Key > curValue)
+                            break;
+                        lastLowest = kvp;
+                    }
+                else
+                    lastLowest = new KeyValuePair<int, string>(curValue, DecToRoman[curValue]);
+
                 curValue = curValue - lastLowest.Key;
                 RomanValue += lastLowest.Value;
             }
+
+            int curDecVal = 0;
+            for(int i = 0; i < RomanValue.Length; i++)
+            {
+                int curHighest = 0;
+                if(i < RomanValue.Length - 1)
+                {
+                    string combined = RomanValue[i].ToString() + RomanValue[i + 1].ToString();                    
+                    curHighest = RomanToDec.ContainsKey(combined) ? RomanToDec[combined] : RomanToDec[RomanValue[i].ToString()];
+                    i = RomanToDec.ContainsKey(combined) ? i + 1 : i;
+                }
+                else
+                    curHighest = RomanToDec[RomanValue[i].ToString()];
+                curDecVal += curHighest;
+            } 
+            Console.WriteLine(curDecVal);
             Console.WriteLine(RomanValue);
             Console.ReadKey();
         }
